@@ -4,17 +4,53 @@
 #include <ESP8266WiFi.h>
 #include <WiFiManager.h>
 
+/*THE MESSAGES*/
+String messageLow[]=
+  {"What's a plant gotta do to get some O's and H's around here?",
+  "So...thirsty",
+  "I guess I did want to be a cactus when I was a sprout",
+  "Ooooh! I need some milk! I mean...water",
+  "I'm thirsty, if you know what I mean"
+  };
 
+String messageHigh[]=
+  {"Do I look like seaweed to you?",
+  "I'm pretty sure I saw a fish swimming in my pot!",
+  "Alright Poseidon, you can cool it now",
+  "Blub...blub...blub",
+  };
+
+ int lowMessageIndex;
+int highMessageIndex;
+int qtyLowMessages =5;  // the number of "low" messages there are
+int qtyHighMessages=4;  //the number of "high messgaes there are
+
+/*THINGSPEAK SETTINGS*/
+char thingSpeakAddress[] = "api.thingspeak.com";
+String APIKey = "****************";          //the api key, duh
 IPAddress server(184,106,153,149);
+
+/*Variables*/
+int waterLevel; //how much water the sensor is reading
+int waterLow;   
+int waterHigh;  
+
+String tweet;   //the messgae that will be tweeted
+
+
+
+bool messageNeeded;     //to know if there should be a tweet or not
+
+
+
+
 
 //I don't really understand this block
 WiFiClient espClient;
 HTTPClient httpClient;
 //PubSubClient client(espClient);
 
-// ThingSpeak Settings
-char thingSpeakAddress[] = "api.thingspeak.com";
-String APIKey = "XXX";          //the api key, duh
+
 
 
 //connect to WiFi network
@@ -58,12 +94,29 @@ void reconnect(){
 void setup() {
   Serial.begin(9600);
   Serial.println("Begin!");
+  pinMode(A0, INPUT);  
+waterLevel =0;     
+waterLow = 850;    //plantbro is thirsty below this threshold
+waterHigh = 500;   //any more than this and it's too much water
   
 
 setup_wifi();
-   updateTwitterStatus("Hello, Sunshine \u1F331 #PlantsInc");
+if(messageNeeded == true){
+   updateTwitterStatus(tweet);
+   messageNeeded == false;
+}
 }
 
+
+void getMessageLow(){
+  lowMessageIndex = random(0,qtyLowMessages);
+  tweet = messageLow[lowMessageIndex];
+}
+
+void getMessageHigh(){
+  highMessageIndex = random(0, qtyHighMessages);
+  tweet = messageHigh[highMessageIndex];
+}
 
 void updateTwitterStatus(String tsData){
   if (espClient.connect(thingSpeakAddress, 80)){ 
@@ -83,9 +136,31 @@ void updateTwitterStatus(String tsData){
 }
 
 void loop(){
-   if(!espClient.connected()){
+waterLevel = analogRead(A0);      //read what the sensor says
+Serial.println(waterLevel);      
+
+if(waterLow < waterLevel){      //if the water level is too low
+  messageNeeded = true;
+  getMessageLow();              //get a low message to tweet
+}
+else if(waterLevel < waterHigh){  //if the water level is too high
+  messageNeeded = true;
+  getMessageHigh();           //get a high message to tweet
+}
+else{
+  messageNeeded = false;      //otherwise, don't tweet anything
+}
+  
+  
+if(messageNeeded == true){       //if a tweet is needed to be made
+    if(!espClient.connected()){  //connect to the web if you're not
   reconnect();
  }
- 
+  updateTwitterStatus(tweet);   //tweet the tweet
+  Serial.println(tweet);
+   messageNeeded == false;      //'reset' the 'flag'
+}
+
+delay(86400000);      //delay 24hours
 }
 
