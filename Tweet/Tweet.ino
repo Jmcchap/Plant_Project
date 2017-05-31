@@ -27,7 +27,7 @@ int qtyHighMessages=4;  //the number of "high messgaes there are
 
 /*THINGSPEAK SETTINGS*/
 char thingSpeakAddress[] = "api.thingspeak.com";
-String APIKey = "****************";          //the api key, duh
+String APIKey = "**********";          //the api key, duh
 IPAddress server(184,106,153,149);
 
 /*Variables*/
@@ -94,7 +94,9 @@ void reconnect(){
 void setup() {
   Serial.begin(9600);
   Serial.println("Begin!");
-  pinMode(A0, INPUT);  
+  pinMode(A0, INPUT); 
+  pinMode(D5, OUTPUT);    //turning on/off the sensor
+  digitalWrite(D5, LOW);  //the sensor is off
 waterLevel =0;     
 waterLow = 850;    //plantbro is thirsty below this threshold
 waterHigh = 500;   //any more than this and it's too much water
@@ -136,8 +138,12 @@ void updateTwitterStatus(String tsData){
 }
 
 void loop(){
+
+digitalWrite(D5, HIGH);           //turn the sensor on
+delay(200);                       //wait to let the sensor read
 waterLevel = analogRead(A0);      //read what the sensor says
 Serial.println(waterLevel);      
+digitalWrite(D5, LOW);          //turn the sensor back off
 
 if(waterLow < waterLevel){      //if the water level is too low
   messageNeeded = true;

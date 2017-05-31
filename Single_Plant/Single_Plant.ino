@@ -17,7 +17,9 @@ bool messageNeeded;     //to know if there should be a tweet or not
 void setup() {
   // put your setup code here, to run once:
 Serial.begin(9600);
-pinMode(A0, INPUT);  
+pinMode(A0, INPUT);   
+pinMode(D5, OUTPUT);  //to turn on the sensor
+digitalWrite(D5, LOW);   //"off"
 waterLevel =0;     
 waterLow = 850;    //plantbro is thirsty below this threshold
 waterHigh = 500;   //any more than this and it's too much water
@@ -51,7 +53,11 @@ void getMessageHigh(){
 
 void loop() {
   // put your main code here, to run repeatedly:
+
+digitalWrite(D5, HIGH);           //turn on the sensor
+delay(200);                       //wait to let the sensor get values
 waterLevel = analogRead(A0);      //read what the sensor says
+digitalWrite(D5, LOW);            //turn off the sensor
 Serial.println(waterLevel);      
 
 if(waterLow > waterLevel){      //if the water level is too low
