@@ -7,8 +7,8 @@ String tweet;   //the messgae that will be tweeted
 
 int lowMessageIndex;
 int highMessageIndex;
-int qtyLowMessages =4;  // the number of "low" messages there are
-int qtyHighMessages=4;  //the number of "high messgaes there are
+int qtyLowMessages =8;  // the number of "low" messages there are
+int qtyHighMessages=8;  //the number of "high messgaes there are
 
 bool messageNeeded;     //to know if there should be a tweet or not
 
@@ -30,14 +30,22 @@ String messageLow[]=
   {"What's a plant gotta do to get some O's and H's around here?",
   "So...thirsty",
   "I guess I did want to be a cactus when I was a sprout",
-  "Ooooh! I need some milk! I mean...water"
+  "Ooooh! I need some milk! I mean...water",
+  "My future perch is parched!",
+  "I'm drying over here!",
+  "1-800-GET-WATER",
+  "Someone please shame @Jmcchap into watering me!"
   };
 
 String messageHigh[]=
   {"Do I look like seaweed to you?",
   "I'm pretty sure I saw a fish swimming in my pot!",
   "Alright Poseidon, you can cool it now",
-  "Blub...blub...blub"
+  "Blub...blub...blub",
+  "WATER you doing?",
+  "H20h no more water for me, kthx",
+  "Where's the fire? 'Cause you need to put this extra water there",
+  "Leaf me alone!"
   };
 
 
@@ -52,8 +60,7 @@ void getMessageHigh(){
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  
 digitalWrite(D5, HIGH);           //turn on the sensor
 delay(200);                       //wait to let the sensor get values
 waterLevel = analogRead(A0);      //read what the sensor says
