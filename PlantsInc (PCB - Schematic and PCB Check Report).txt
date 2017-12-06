@@ -1,0 +1,46 @@
+Schematic and PCB Check Report
+------------------------------
+
+Report Written:     Tuesday, December 05, 2017
+Project Path:       C:\Users\toshiba\Desktop\Plant_Project\PlantsInc.prj
+Design Path:        C:\Users\toshiba\Desktop\Plant_Project\PlantsInc.pcb
+Design Title:       
+Created:            11/14/2017 7:13:18 PM
+Last Saved:         11/14/2017 7:13:29 PM
+Editing Time:       30456 min
+Units:              thou (precision 0)
+
+
+Checking integrity of Schematic "C:\Users\toshiba\Desktop\Plant_Project\PlantsInc.sch" with PCB "C:\Users\toshiba\Desktop\Plant_Project\PlantsInc.pcb"
+======================================================================================================================================================
+
+The PCB and Schematic designs do not match.
+To bring them into line, you will need to make the following changes to the PCB design:
+
+Add Component "ESP1" [ESP8266 D1Mini]
+Add Component "PL1" [CONN_SIL_4]
+Add Component "Q1" [Npn]
+
+Add net class "Signal".
+Add net class "Power".
+Add net class "Ground".
+
+Add Net "GND"
+Add Net "ESP5V"
+Add Net "N0004"
+Add Net "H20SensorVCC"
+Add Net "H20SensorIO"
+
+Connect Pin ESP1-7 to Net "GND"
+Connect Pin ESP1-8 to Net "ESP5V"
+Connect Pin ESP1-13 to Net "N0004"
+Connect Pin ESP1-10 to Net "H20SensorIO"
+Connect Pin PL1-1 to Net "H20SensorVCC"
+Connect Pin PL1-2 to Net "GND"
+Connect Pin PL1-3 to Net "H20SensorIO"
+Connect Pin Q1-1 to Net "ESP5V"
+Connect Pin Q1-2 to Net "N0004"
+Connect Pin Q1-3 to Net "H20SensorVCC"
+
+
+End Of Report.

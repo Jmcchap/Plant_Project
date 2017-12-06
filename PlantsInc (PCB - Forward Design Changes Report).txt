@@ -1,0 +1,36 @@
+Forward Design Changes Report
+-----------------------------
+
+Report Written:     Tuesday, December 05, 2017
+Project Path:       C:\Users\toshiba\Desktop\Plant_Project\PlantsInc.prj
+Design Path:        C:\Users\toshiba\Desktop\Plant_Project\PlantsInc.pcb
+Design Title:       
+Created:            11/14/2017 7:13:18 PM
+Last Saved:         12/5/2017 10:49:29 PM
+Editing Time:       30456 min
+Units:              thou (precision 0)
+
+Added net class "Signal".
+Added net class "Power".
+Added net class "Ground".
+
+Added net "GND".
+Added net "ESP5V".
+Added net "N0004".
+Added net "H20SensorVCC".
+Added net "H20SensorIO".
+
+Added component reference "ESP1" of component "ESP8266 D1Mini", package "USER".
+Added component reference "PL1" of component "CONN_SIL_4", package "DSC".
+Error: Unable to add component reference "Q1" of component "Npn", package "SPICE" because No PCB information for Component "Npn"..
+
+Connected pin "ESP1-7" to net "GND".
+Connected pin "ESP1-8" to net "ESP5V".
+Connected pin "ESP1-13" to net "N0004".
+Connected pin "ESP1-10" to net "H20SensorIO".
+Connected pin "PL1-1" to net "H20SensorVCC".
+Connected pin "PL1-2" to net "GND".
+Connected pin "PL1-3" to net "H20SensorIO".
+
+
+End Of Report.

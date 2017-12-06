@@ -4,13 +4,17 @@
 #include <ESP8266WiFi.h>
 #include <WiFiManager.h>
 
+
 /*THE MESSAGES*/
 String messageLow[]=
   {"What's a plant gotta do to get some O's and H's around here?",
   "So...thirsty",
   "I guess I did want to be a cactus when I was a sprout",
   "Ooooh! I need some milk! I mean...water",
-  "I'm thirsty, if you know what I mean"
+  "My future perch is parched!",
+  "I'm drying over here!",
+  "1-800-GET-WATER",
+  "Someone please shame @Jmcchap into watering me!"
   };
 
 String messageHigh[]=
@@ -18,16 +22,20 @@ String messageHigh[]=
   "I'm pretty sure I saw a fish swimming in my pot!",
   "Alright Poseidon, you can cool it now",
   "Blub...blub...blub",
+  "WATER you doing?",
+  "H20h no more water for me, kthx",
+  "Where's the fire? 'Cause you need to put this extra water over there",
+  "Leaf me alone!"
   };
 
  int lowMessageIndex;
 int highMessageIndex;
-int qtyLowMessages =5;  // the number of "low" messages there are
-int qtyHighMessages=4;  //the number of "high messgaes there are
+int qtyLowMessages =8;  // the number of "low" messages there are
+int qtyHighMessages=8;  //the number of "high messgaes there are
 
 /*THINGSPEAK SETTINGS*/
 char thingSpeakAddress[] = "api.thingspeak.com";
-String APIKey = "**********";          //the api key, duh
+String APIKey = "******************************";          //the api key, duh
 IPAddress server(184,106,153,149);
 
 /*Variables*/
@@ -83,7 +91,7 @@ void reconnect(){
         
     
   }else {
-    Serial.print("Well, dra3t. The issue seems to be: ur dumb ");
+    Serial.print("Well, drat. The issue seems to be: ur dumb ");
     Serial.println("Trying again in a jiffy");
     //Wait a jiffy seconds and retry connecting
     delay(3340);
