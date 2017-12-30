@@ -3,6 +3,7 @@
 //#include <PubSubClient.h>
 #include <ESP8266WiFi.h>
 #include <WiFiManager.h>
+#include <DHT.h>
 
 
 /*THE MESSAGES*/
@@ -104,7 +105,8 @@ void setup() {
   Serial.println("Begin!");
   pinMode(A0, INPUT); 
   pinMode(D5, OUTPUT);    //turning on/off the sensor
-  digitalWrite(D5, LOW);  //the sensor is off
+  digitalWrite(D5, LOW);  //the moisture sensor is off
+  
 waterLevel =0;     
 waterLow = 850;    //plantbro is thirsty below this threshold
 waterHigh = 500;   //any more than this and it's too much water

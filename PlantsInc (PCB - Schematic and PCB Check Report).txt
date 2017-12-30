@@ -1,13 +1,12 @@
 Schematic and PCB Check Report
 ------------------------------
 
-Report Written:     Tuesday, December 05, 2017
-Project Path:       C:\Users\toshiba\Desktop\Plant_Project\PlantsInc.prj
+Report Written:     Wednesday, December 06, 2017
 Design Path:        C:\Users\toshiba\Desktop\Plant_Project\PlantsInc.pcb
 Design Title:       
 Created:            11/14/2017 7:13:18 PM
-Last Saved:         11/14/2017 7:13:29 PM
-Editing Time:       30456 min
+Last Saved:         12/6/2017 10:24:48 PM
+Editing Time:       30479 min
 Units:              thou (precision 0)
 
 
@@ -17,30 +16,35 @@ Checking integrity of Schematic "C:\Users\toshiba\Desktop\Plant_Project\PlantsIn
 The PCB and Schematic designs do not match.
 To bring them into line, you will need to make the following changes to the PCB design:
 
-Add Component "ESP1" [ESP8266 D1Mini]
-Add Component "PL1" [CONN_SIL_4]
-Add Component "Q1" [Npn]
+Disconnect Pin ESP1-8 from Net "ESP5V"
+Disconnect Pin ESP1-10 from Net "H20SensorIO"
+Disconnect Pin ESP1-12 from Net "N0003"
+Disconnect Pin PL1-1 from Net "H20SensorVCC"
+Disconnect Pin PL1-3 from Net "H20SensorIO"
+Disconnect Pin PL2-1 from Net "ESP5V"
+Disconnect Pin PL2-2 from Net "N0003"
+Disconnect Pin PL2-3 from Net "H20SensorVCC"
 
-Add net class "Signal".
-Add net class "Power".
-Add net class "Ground".
+Delete Net "ESP5V"
+Delete Net "H20SensorVCC"
+Delete Net "H20SensorIO"
+Delete Net "N0003"
 
-Add Net "GND"
-Add Net "ESP5V"
-Add Net "N0004"
-Add Net "H20SensorVCC"
-Add Net "H20SensorIO"
+Delete Component "PL2" [CONN_SIL_3]
 
-Connect Pin ESP1-7 to Net "GND"
-Connect Pin ESP1-8 to Net "ESP5V"
-Connect Pin ESP1-13 to Net "N0004"
-Connect Pin ESP1-10 to Net "H20SensorIO"
-Connect Pin PL1-1 to Net "H20SensorVCC"
-Connect Pin PL1-2 to Net "GND"
-Connect Pin PL1-3 to Net "H20SensorIO"
-Connect Pin Q1-1 to Net "ESP5V"
-Connect Pin Q1-2 to Net "N0004"
-Connect Pin Q1-3 to Net "H20SensorVCC"
+Add Component "T1" [2222A NPN]
+
+Add Net "+5V"
+Add Net "N0005"
+Add Net "N0008"
+
+Connect Pin ESP1-8 to Net "+5V"
+Connect Pin ESP1-12 to Net "N0008"
+Connect Pin T1-2 to Net "N0004"
+Connect Pin T1-3 to Net "N0005"
+Connect Pin T1-1 to Net "+5V"
+Connect Pin PL1-1 to Net "N0005"
+Connect Pin PL1-3 to Net "N0008"
 
 
 End Of Report.
